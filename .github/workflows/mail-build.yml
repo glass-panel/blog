@@ -42,15 +42,13 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: "Set Environment Variables"
+      - name: Execute Mail2Post
         run: |
           export GRAPH_CLIENT_SECRET="${{ secrets.GRAPH_CLIENT_SECRET }}"
           export GRAPH_CLIENT_ID="${{ secrets.GRAPH_CLIENT_ID }}"
           export GRAPH_TENANT_ID="${{ secrets.GRAPH_TENANT_ID }}"
           export MAIL_ACCOUNT="${{ secrets.MAIL_ACCOUNT }}"
-          
-      - name: Execute Mail2Post
-        run: npm run mail2post -- --mailid="${{ inputs.mail_id }}"
+          npm run mail2post -- --mailid="${{ inputs.mail_id }}"
 
       - name: Commit changes and push back
         run: |
