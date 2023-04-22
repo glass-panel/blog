@@ -1,0 +1,89 @@
+name: MailBuild
+
+on:
+  workflow_dispatch:
+    inputs:
+      mail_id:
+        required: true
+        type: string  
+  
+jobs:
+  pages:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    permissions:
+      contents: write
+      pages: write
+      deployments: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Cache NPM dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: "Set Environment Variables"
+        run: |
+          export GRAPH_CLIENT_SECRET="${{ secrets.GRAPH_CLIENT_SECRET }}"
+          export GRAPH_CLIENT_ID="${{ secrets.GRAPH_CLIENT_ID }}"
+          export GRAPH_TENANT_ID="${{ secrets.GRAPH_TENANT_ID }}"
+          export MAIL_ACCOUNT="${{ secrets.MAIL_ACCOUNT }}"
+          
+      - name: Execute Mail2Post
+        run: npm run mail2post -- --mailid="${{ inputs.mail_id }}"
+
+      - name: Commit changes and push back
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add ./source/_posts
+          git commit -m "Mail2Post update" -a
+          git push
+
+      - name: Copy comments
+        uses: actions/checkout@v3
+        with:
+          ref: comments
+          path: public/comments
+
+      - name: Build
+        run: npm run build
+        
+      - name: Update comments
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public/comments/
+          publish_branch: comments
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: public
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

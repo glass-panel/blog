@@ -1,0 +1,42 @@
+<div class="posts">
+  <% page.posts.sort('date', 'desc').each(function(post) { %>
+    <div class="post">
+      <h1 class="post-title">
+        <% if (post.link) { %>
+          <a href="<%- url_for(post.link) %>" target="_blank" itemprop="url"><%= post.title %></a>
+        <% } else if (post.title) { %>
+          <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+        <% } else { %>
+          <a href="<%- url_for(post.path) %>">Untitled</a>
+        <% } %>
+      </h1>
+      <span class="post-date">
+        <%= date(post.date) %>
+        <% if (post.tags) { %>
+          • <%- list_tags(post.tags, { show_count: false, style: 'link' }) %>
+        <% } %>
+      </span>
+      <% if (post.excerpt) { %>
+        <%- post.excerpt %>
+        <p><a href="<%- url_for(post.path) %>">Read more ...</a></p>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
+    </div>
+  <% }); %>
+</div>
+
+<% if (page.next_link || page.prev_link) { %>
+  <div class="pagination">
+    <% if (page.next_link) { %>
+      <a class="pagination-item older" href="<%- url_for(page.next_link) %>">Older</a>
+    <% } else { %>
+      <span class="pagination-item older">Older</span>
+    <% } %>
+    <% if (page.prev_link) { %>
+      <a class="pagination-item newer" href="<%- url_for(page.prev_link) %>">Newer</a>
+    <% } else { %>
+      <span class="pagination-item newer">Newer</span>
+    <% } %>
+  </div>
+<% } %>

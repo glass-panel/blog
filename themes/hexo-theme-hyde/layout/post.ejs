@@ -1,0 +1,43 @@
+<div class="page">
+  <h1>
+    <% if (page.link) { %>
+      <a href="<%- url_for(page.link) %>" target="_blank" itemprop="url"><%= page.title %></a>
+    <% } else if (page.title) { %>
+      <a href="<%- url_for(page.path) %>"><%= page.title %></a>
+    <% } else { %>
+      <a href="<%- url_for(page.path) %>">Untitled</a>
+    <% } %>
+  </h1>
+  <% if (page.date) { %>
+    <span class="post-date">
+      <%= date(page.date) %>
+      <% if (page.tags) { %>
+        • <%- list_tags(page.tags, { show_count: false, style: 'link' }) %>
+      <% } %>
+    </span>
+  <% } %>
+  <%- page.content %>
+  <% if (page.comments) { %>
+    <%- js('scripts/comment.js') %>
+    <div id="comment-meta" class="hide" 
+      data-mailto="<%- config.comment?.mailto  %>" 
+      data-pageurl="<%- url_for(page.path)  %>"
+      data-mailid="<%- page.mailid %>"
+      data-source="<%- config.comment?.source || '' %>"
+    ></div>
+    <div style="background: #a8a8a8; width: 100%; height: 1px; margin: 1em auto;"></div>
+    <div id="comment-hint" class="hide">
+      <span>正在回复第</span> <span>0-0</span> <span>层</span> <i class="fa fa-solid fa-times" onclick="CommentInput.toggleFloorReply('')"></i>
+    </div>
+    <textarea id="comment-textarea" placeholder="说点什么" data-replyfloor=""></textarea>
+    <div> 
+      <span id="comments-num">0</span><span>条评论</span> 
+      <span style="display: inline-block;"></span>
+      <a class="comment-button comment-help" href="<%- url_for('/comment-help') %>"><i class="fa fa-solid fa-question-circle"></i></a>
+      <a id="comment-submit" class="comment-button" href="" target="_blank">使用邮件回复</a> 
+      <span id="comment-submit-manual" class="comment-button" style="color: #a8a8a8; cursor: pointer;" onclick="CommentInput.toggleManual()">手动发送</span>
+      <span class="comment-button">匿名<input id="comment-anonymous" type="checkbox" onchange="CommentInput.toggleAnonymous()"></span> 
+    </div>
+    <div id="comments"></div>
+  <% } %>
+</div>

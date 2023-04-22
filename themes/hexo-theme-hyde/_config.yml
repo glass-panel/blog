@@ -1,0 +1,7 @@
+favicon:
+    desktop:
+        url: favicon.ico
+nav:
+    about: /about
+    links: /links
+    

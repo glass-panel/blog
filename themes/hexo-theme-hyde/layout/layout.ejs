@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <%- partial('_partial/head') %>
+
+  <body class="<%- config.theme_class %>">
+
+    <%- partial('_partial/sidebar') %>
+
+    <div class="content container">
+      <%- body %>
+    </div>
+
+    <p class="mobile-footer">&copy; <%= new Date().getFullYear() %> <%= config.author || config.title %></p>
+  
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="<%- config.root %>" class="logo">
+            <div style="color: #569CD6;"><span>glass_panel</span></div>
+            <div><span style="color: #d4d4d4;">.</span><span style="color: #DCDCAA;">blog</span><span style="color: #d4d4d4;">()</span></div>
+        </a>
+      </h1>
+      <% if (config.description) { %>
+        <%- markdown(config.description) %>
+      <% } %>
+      <% if (config.social_links) { %>
+        <p>
+          <% for (var link in config.social_links) { %>
+            <% if (link == 'mail') { %>
+              <a class="icon" target="_blank" href="<%- url_for(config.social_links[link]) %>">
+                <i class="fas fa-envelope"></i><!--
+          ---></a><!--
+          ---><% } else { %>
+              <a class="icon" target="_blank" href="<%- url_for(config.social_links[link]) %>">
+                <i class="fab fa-<%= link %>"></i><!--
+          ---></a><!--
+        ---><% } %>
+        <% } %>
+        </p>
+      <% } %>
+    </div>
+
+    <nav class="sidebar-nav">
+      <% for (var i in config.nav) { %>
+        <% if (path.substr(0, theme.nav[i].length) === theme.nav[i]) { %>
+          <a class="sidebar-nav-item active" href="<%- url_for(theme.nav[i]) %>"><%= i %></a>
+        <% } else { %>
+          <a class="sidebar-nav-item" href="<%- url_for(theme.nav[i]) %>"><%= i %></a>
+        <% } %>
+      <% } %>
+    </nav>
+
+    <p class="desktop-footer">&copy; <%= new Date().getFullYear() %> <%= config.author || config.title %></p>
+  </div>
+</div>

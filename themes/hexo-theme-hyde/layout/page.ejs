@@ -1,0 +1,12 @@
+<div class="page">
+  <h1>
+    <% if (page.link) { %>
+      <a href="<%- url_for(page.link) %>" target="_blank" itemprop="url"><%= page.title %></a>
+    <% } else if (page.title) { %>
+      <a href="<%- url_for(page.path) %>"><%= page.title %></a>
+    <% } else { %>
+      <a href="<%- url_for(page.path) %>">Untitled</a>
+    <% } %>
+  </h1>
+  <%- page.content %>
+</div>
