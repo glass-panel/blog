@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+const moment = require('moment');
 require('cross-fetch/polyfill');
 const parseCmd = require('shell-quote').parse;
 const { Client, GraphError } = require("@microsoft/microsoft-graph-client");
@@ -75,7 +76,7 @@ async function handlePost(cmd, id) {
                 .header("Prefer", "outlook.body-content-type=\"html\"")
                 .get();
             content = res.body.content;
-            date = new Date(res.sentDateTime);
+            date = moment(new Date(res.sentDateTime));
             break;
         }
         case 'markdown': {
@@ -84,7 +85,7 @@ async function handlePost(cmd, id) {
                 .header("Prefer", "outlook.body-content-type=\"text\"")
                 .get();
             content = res.body.content;
-            date = new Date(res.sentDateTime);
+            date = moment(new Date(res.sentDateTime));
             break;
         }
         case 'fileonly': 
