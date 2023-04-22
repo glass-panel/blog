@@ -127,10 +127,12 @@ const Comments = {
             .replace(/^\/+/, "")
             .replace(/\/+$/, "") + "/";
         const source = document.getElementById("comment-meta").getAttribute("data-source") || document.location.origin;
-        this.comments = await fetch(new URL(pageurl+'comments.json', source, {
-            'Cache-Control': 'no-cache',
-            'Pragma': 'no-cache',
-        })).then(res =>  {
+        this.comments = await fetch(new URL(pageurl+'comments.json', source), {
+            headers: {
+                'Cache-Control': 'no-cache',
+                'Pragma': 'no-cache',
+            }
+        }).then(res =>  {
             if(res.status == 404)
                 return [];
             if(!res.ok)
