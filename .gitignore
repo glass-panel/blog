@@ -1,0 +1,15 @@
+node_modules/
+.DS_Store
+.vscode/
+Thumbs.db
+
+package-lock.json
+wrangler.toml
+.dev.vars
+.env
+
+*.log
+db.json
+public/
+.deploy*/
+_multiconfig.yml
