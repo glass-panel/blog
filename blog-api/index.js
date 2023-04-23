@@ -44,15 +44,15 @@ function validateSender(address) {
     return false;
 }
 
-async function githubAPI(url, method='GET', data=null) {
+async function githubAPI(url, method='GET', data=null, headers={}) {
     const res = await fetch(`https://api.github.com${url}`, {
         method,
-        headers: {
+        headers: Object.assign({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${env.GITHUB_TOKEN}`,
             'Accept': 'application/json',
             'User-Agent': 'Cloudflare Worker'
-        },
+        }, headers),
         body: data? JSON.stringify(data): undefined,
     }).then(res=> res.text());
     console.log(res);
@@ -93,16 +93,11 @@ async function fetchComments(cmd) {
     const commentsPath = (cmd.path + 'comments.json').replace(/^\//g, "");
     console.log(`https://raw.githubusercontent.com/${env.GITHUB_REPO}/${env.GITHUB_COMMENTS_BRANCH}/${commentsPath}`);
     /** @type {Comment[]} */
-    const comments = await fetch(
-        `https://raw.githubusercontent.com/${env.GITHUB_REPO}/${env.GITHUB_COMMENTS_BRANCH}/${commentsPath}`, {
-        headers: {
-            'Cache-Control': 'no-cache',
-            'Pragma': 'no-cache',
-            //'Authorization': `Bearer ${env.GITHUB_TOKEN}`,  // DELETE THIS IF NOT PRIVATE REPO
-            'Accept': 'application/json',
-            'User-Agent': 'Cloudflare Worker'
-        }
-    }).then(res=> res.json());
+    const comments = await githubAPI(`/repos/${env.GITHUB_REPO}/contents/${commentsPath}?ref=${env.GITHUB_COMMENTS_BRANCH}`, 
+        'GET', 
+        null, {
+        'Accept': 'application/vnd.github.raw',
+    });
     return comments;
 }
 
