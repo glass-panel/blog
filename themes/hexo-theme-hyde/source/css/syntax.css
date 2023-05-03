@@ -18,6 +18,17 @@
     position: sticky;
     left: 0;
 }
+
+.gutter pre {
+    padding: 1rem 0.5rem;
+}
+
+@media (max-width: 48em) {
+    .gutter pre {
+        padding: 1rem 0.2rem;
+    }
+}
+
 .code {
     width: 100%;
 }
