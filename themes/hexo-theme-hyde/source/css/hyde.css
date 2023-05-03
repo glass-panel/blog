@@ -31,6 +31,12 @@
  * Update the foundational and global aspects of the page.
  */
 
+body {
+  min-height: 100vh;
+  height: 100%;
+  position: relative;
+}
+
 html {
   font-family: 'PingHei', 'PingFang SC', 'Helvetica Neue', 'Work Sans', 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
 }
@@ -68,7 +74,14 @@ html {
   color: rgba(255,255,255,.5);
   background-color: #202020;
   margin: 0;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
+.footer-container {
+  padding-top: 2em;
+}
+
 .desktop-footer {
   display: none;
 }
@@ -83,7 +96,7 @@ html {
     bottom: 0;
     width: 18rem;
   }
-  .mobile-footer {
+  .footer-container {
     display: none;
   }
   .desktop-footer {
