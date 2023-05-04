@@ -25,9 +25,12 @@ pretty_urls:
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
 nav:
-    about: /about
-    links: /links
-    
+  about: /about
+  links: /links
+
+social_links:
+  mail: "mailto:glass-panel@glass-panel.info"
+  github: "https://github.com/glass-panel"
 
 # Directory
 source_dir: source

@@ -86,6 +86,18 @@ html {
 }
 
 
+.sidebar-icons {
+  position: relative;
+  display: block;
+  font-size: 1.5rem;
+  float: right;
+  bottom: 0.2rem;
+}
+
+.sidebar-icon {
+  margin-right: 0.5rem;
+}
+
 @media (min-width: 48em) {
   .sidebar {
     position: fixed;
@@ -100,6 +112,10 @@ html {
   }
   .desktop-footer {
     display: block;
+  }
+  .sidebar-icons {
+    all: initial;
+    font-size: 1.2rem;
   }
 }
 
