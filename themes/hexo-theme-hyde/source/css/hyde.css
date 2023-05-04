@@ -13,7 +13,6 @@
  * https://github.com/poole/hyde.
  */
 
-
 /*
  * Contents
  *
@@ -124,6 +123,7 @@ html {
   display: inline-block;
   line-height: 1.75;
   padding: 0 0.5rem 0.5rem 0.5rem;
+  white-space: nowrap; /* mobile edge has layout problem without this line */
 }
 @media (min-width: 48em) {
   .sidebar-nav-item {
@@ -141,7 +141,7 @@ a.sidebar-nav-item:focus {
 
 .logo {
   font-size: 2.25rem;
-  font-family: consolas, 'Roboto Mono', 'Lucida Console', "Courier New", monospace;
+  font-family: consolas, "Ubuntu Mono", "Courier New", monospace;
 }
 
 /* Sticky sidebar
@@ -273,7 +273,7 @@ a.sidebar-nav-item:focus {
 
 .comment-reply {
   float: right;
-  color: #c3c3c3;
+  color: #c3c3c3; 
   cursor: pointer;
 }
 

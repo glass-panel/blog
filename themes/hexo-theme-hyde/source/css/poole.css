@@ -13,6 +13,16 @@
  * https://github.com/poole/poole.
  */
 
+ @font-face {
+  font-family: "Ubuntu Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), 
+    url("/fonts/ubuntu-mono-v8-latin-regular.ttf") format("truetype"),
+    url("/fonts/ubuntu-mono-v8-latin-regular.woff") format("woff"),
+    url("/fonts/ubuntu-mono-v8-latin-regular.woff2") format("woff2"), 
+    url("/fonts/ubuntu-mono-v8-latin-regular.svg") format("svg");
+}
 
 /*
  * Contents
@@ -169,7 +179,7 @@ abbr[title] {
 /* Code */
 code,
 pre {
-  font-family: consolas, "Courier New", monospace;
+  font-family: consolas, "Ubuntu Mono", "Courier New", monospace;
 }
 
 code {

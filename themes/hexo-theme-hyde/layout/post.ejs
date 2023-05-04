@@ -33,10 +33,10 @@
     <div> 
       <span id="comments-num">0</span><span>条评论</span> 
       <span style="display: inline-block;"></span>
-      <a class="comment-button comment-help" href="<%- url_for('/comment-help') %>"><i class="fa fa-solid fa-question-circle"></i></a>
+      <a class="comment-button" href="<%- url_for('/comment-help') %>"><i class="fa fa-solid fa-question-circle"></i></a>
       <a id="comment-submit" class="comment-button" href="" target="_blank">使用邮件回复</a> 
       <span id="comment-submit-manual" class="comment-button" style="color: #a8a8a8; cursor: pointer;" onclick="CommentInput.toggleManual()">手动发送</span>
-      <span class="comment-button">匿名<input id="comment-anonymous" type="checkbox" onchange="CommentInput.toggleAnonymous()"></span> 
+      <span class="comment-button" style="margin-left: 0;">匿名<input id="comment-anonymous" type="checkbox" onchange="CommentInput.toggleAnonymous()"></span> 
     </div>
     <div id="comments"></div>
   <% } %>
