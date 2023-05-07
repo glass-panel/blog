@@ -229,6 +229,11 @@ a.sidebar-nav-item:focus {
   }
 }
 
+.graph-container {
+  display: flex; 
+  justify-content: center
+}
+
 #comment-hint {
   font-size: 14px;
   padding: 0.5rem;
