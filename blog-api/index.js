@@ -121,7 +121,7 @@ function insertComments(cmd, comments, newComment) {
         id: '' + (cmd.floors.length? 
             `${cmd.floors.join('-')}-${insertPos.length + 1}` :
             insertPos.length + 1),
-        name: cmd.anonymous? '不愿透露姓名的网友' : newComment.from,
+        name: cmd.anonymous? '不愿透露姓名的网友' : newComment.from.split('@')[0],
         time: Date.now(),
         content: xss(newComment.content, {
             stripIgnoreTag: true,
