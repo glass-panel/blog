@@ -27,7 +27,7 @@
     "hexo-renderer-stylus": "^3.0.0",
     "hexo-server": "^3.0.0",
     "html-minifier-terser": "^7.2.0",
-    "itty-router": "^3.0.12",
+    "itty-router": "^4.0.9",
     "mermaid": "^10.1.0",
     "puppeteer": "^20.1.1",
     "shell-quote": "^1.8.1",
