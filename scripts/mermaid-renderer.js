@@ -56,7 +56,7 @@ async function handleContent(content) {
     )=> {
         //console.log({$0, start, $2, _args, _content, end});
         const args = _args.split('=').shift() || "";
-        const lang = (rAllOptions.exec(args) || rLangCaption.exec(args))[1];
+        const lang = (rAllOptions.exec(args) || rLangCaption.exec(args))?.[1];
         if(lang != "mermaid")
             return $0;
 
