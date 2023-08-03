@@ -29,7 +29,7 @@
     "html-minifier-terser": "^7.2.0",
     "itty-router": "^4.0.9",
     "mermaid": "^10.1.0",
-    "puppeteer": "^20.1.1",
+    "puppeteer": "^21.0.0",
     "shell-quote": "^1.8.1",
     "uglify-js": "^3.17.4"
   }
