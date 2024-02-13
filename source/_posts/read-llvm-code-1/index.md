@@ -177,7 +177,7 @@ done:
 ```
 
 ```mermaid
-flowchart LR
+flowchart TB
 
 subgraph "Function"
 	fname("Name: @add1")
