@@ -52,7 +52,7 @@ LLVM-PROJECT/llvm/lib/Support/
 
 ```shell
 LLVM-PROJECT/llvm/include/llvm/IR/
-LLVM-PROJECT/lib/IR/
+LLVM-PROJECT/llvm/lib/IR/
 ```
 
 LLVM IR 假定有无限多任意大的寄存器可用，所以**看上去像**个高级语言一样有着 `变量名N = 运算I 类型名T 参数P1 参数P2` 一样的语法，实际上:
@@ -94,7 +94,7 @@ IR 中的 `User` 是指令和函数等使用 `Value` 的类的基类，同时，
 
 #### class `BasicBlock : Value`
 
-一个 `BasicBlock` 代表 LLVM IR 程序结构中一串 *连续* 的指令，这里的连续指的是一连串 非终结(non-terminating) 指令紧跟着一条 终结 指令构成的指令块。诸如分支判断、函数调用、异常处理等指令为终结指令。这也挺好理解，终结指令则改变了执行流，分出其他的 `BasicBlock`
+一个 `BasicBlock` 代表 LLVM IR 程序结构中一串 *连续* 的指令，这里的连续指的是一连串 非终结(non-terminating) 指令紧跟着一条 终结 指令构成的指令块。诸如分支判断、返回或不可达、异常处理等指令为终结指令。这也挺好理解，终结指令则改变了执行流，分出其他的 `BasicBlock`
 
 `BasicBlock` 的类型为 `LabelTy`，与汇编中见到的 lable 意思差不多
 
