@@ -40,14 +40,14 @@ async function render(code) {
         const url = new URL(req.url());
         if(url.hostname == localhost) {
             /** @type {Response} */
-            const response = await server.router.handle(
+            const response = await server.router.fetch(
                 new Request(req.url(), {
                     method: req.method(),
                     headers: req.headers(),
                     body: req.postData()
                 }
             ));
-            req.respond({
+            return await req.respond({
                 status: response.status, 
                 headers: Object.fromEntries(response.headers), 
                 body: await response.text()

@@ -28,7 +28,7 @@ const page = String.raw`<html>
 
 const mermaidPath = path.dirname(require.resolve("mermaid"));
 
-router.get("/mermaid/:file", async (req)=> {
+router.get("/mermaid/:file+", async (req)=> {
     return new Response(
         await fs.promises.readFile(path.join(mermaidPath, req.params.file)), {
             status: 200,

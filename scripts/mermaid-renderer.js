@@ -4,7 +4,7 @@ const config = {
     enable: true,
     browser: {
         launchOptions: {
-            headless: "new",
+            headless: true,
             args: ["--no-sandbox", "--disable-gpu", "--disable-setuid-sandbox"],
         },
         parallel: false
